@@ -30,7 +30,6 @@ public class UserDAO {
 
             conn.close();
 
-
         }catch (Exception e) {
             System.out.println("UserDao.creat:" + e.toString());
         }
