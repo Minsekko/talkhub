@@ -13,6 +13,12 @@ public class HomeServelt extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        if(Math.random()>0.5) {
+            req.setAttribute("authentication", true);
+        } else {
+            req.setAttribute("authentication", true);
+        }
+
         req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req,resp);
     }
 }
