@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.innovibe.talkhub.model.dao.UserDAO;
 import org.innovibe.talkhub.model.vo.User;
 
@@ -25,6 +26,8 @@ public class LoginProceedServlet extends HttpServlet {
         }else {
             if(found.getPassword().equals(password)) {
                 //인증성공
+                HttpSession session = req.getSession();
+                session.setAttribute("user",found);
                 resp.sendRedirect(req.getContextPath()+"/index");
             } else {
                 //인증 실패
