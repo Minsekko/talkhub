@@ -42,7 +42,7 @@ public class UserDAO {
         try {
             Connection conn = ConnectionFactory.open();
 
-            PreparedStatement ps = conn.prepareStatement("select* from users where id=?");
+            PreparedStatement ps = conn.prepareStatement("select * from users where id=?");
             ps.setString(1, specficId);
 
             ResultSet rs = ps.executeQuery();

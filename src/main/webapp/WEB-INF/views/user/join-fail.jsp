@@ -13,31 +13,44 @@
 </head>
 <body>
 <h1>TalkHub</h1>
-<div >
+<div>
     <h2>토크허브에 회원가입하기</h2>
     <p>
         <b>TalkHub</b>에 가입하고 자유롭게 이야기하세요! 다양한 주제에 대해 토론하고, 새로운 사람들과 소통할 수 있습니다.
     </p>
     <form action="${pageContext.request.contextPath}/user/join-proceed" method="post">
-        <div >
+        <div>
             <label>아이디(*)</label>
             <div>
                 <input type="text" name="id"/>
             </div>
+            <c:if test="${idError != null}">
+                <div style="color:red; font-size: small">${idError}</div>
+            </c:if>
+            <c:if test="${idError2 != null}">
+                <div style="color:red; font-size: small">${idError2}</div>
+            </c:if>
+
         </div>
-        <div >
+        <div>
             <label>비밀번호(*)</label>
             <div>
                 <input type="password" name="password"/>
             </div>
+            <c:if test="${passwordError != null}">
+                <div style="color:red; font-size: small">${passwordError}</div>
+            </c:if>
         </div>
-        <div >
+        <div>
             <label>활동명(*)</label>
             <div>
-                <input type="text"  name="nickname"/>
+                <input type="text" name="nickname"/>
+                <c:if test="${nicknamefound != null}">
+                    <div style="color:red; font-size: small">${nicknamefound}</div>
+                </c:if>
             </div>
         </div>
-        <div >
+        <div>
             <label>성별(*)</label>
             <div>
                 <select name="gender">
@@ -47,7 +60,7 @@
                 </select>
             </div>
         </div>
-        <div >
+        <div>
             <label>출생년도(*)</label>
             <div>
                 <select name="birth">
@@ -57,8 +70,8 @@
                 </select>
             </div>
         </div>
-        <div >
-            <button type="submit" >가입하기</button>
+        <div>
+            <button type="submit">가입하기</button>
         </div>
     </form>
 </div>

@@ -21,7 +21,7 @@
     <div>
         <label>아이디</label>
         <div>
-            <input type="text" name="id"/>
+            <input type="text" name="id" value="${id}"/>
         </div>
     </div>
     <div>
@@ -30,6 +30,9 @@
             <input type="password" name="password"/>
         </div>
     </div>
+    <p style="color:red; font-size: small">
+        ${error}
+    </p>
     <div>
         <button type="submit">사용자인증</button>
     </div>

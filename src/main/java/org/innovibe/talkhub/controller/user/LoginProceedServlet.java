@@ -22,7 +22,9 @@ public class LoginProceedServlet extends HttpServlet {
         User found = userDAO.findById(id);
 
         if (found == null) {
-            req.getRequestDispatcher("/WEB-INF/view/user/login-fail.jsp").forward(req,resp);
+            req.setAttribute("error","아이디 또는 비밀 번호가 잘못되었습니다. 아이디와 비밀번호를 정확히 입력해주세요");
+            req.setAttribute("id",id);
+            req.getRequestDispatcher("/WEB-INF/views/user/login-fail.jsp").forward(req,resp);
         }else {
             if(found.getPassword().equals(password)) {
                 //인증성공
@@ -31,7 +33,9 @@ public class LoginProceedServlet extends HttpServlet {
                 resp.sendRedirect(req.getContextPath()+"/index");
             } else {
                 //인증 실패
-                req.getRequestDispatcher("/WEB-INF/view/user/login-fail.jsp").forward(req,resp);
+                req.setAttribute("error","아이디 또는 비밀 번호가 잘못되었습니다. 아이디와 비밀번호를 정확히 입력해주세요");
+                req.setAttribute("id",id);
+                req.getRequestDispatcher("/WEB-INF/views/user/login-fail.jsp").forward(req,resp);
             }
         }
     }
