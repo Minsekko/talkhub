@@ -22,7 +22,7 @@
         <div>
             <label>아이디(*)</label>
             <div>
-                <input type="text" name="id"/>
+                <input type="text" name="id" value="${param.id}"/>
             </div>
             <c:if test="${idError != null}">
                 <div style="color:red; font-size: small">${idError}</div>
