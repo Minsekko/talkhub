@@ -39,7 +39,7 @@ public class JoinProceedServlet extends HttpServlet {
             req.setAttribute("idError2", "아이디가 중복 입니다.");
         }
 
-        User nicknamefound = userDao.findById(nickname);
+        User nicknamefound = userDao.findBynickname(nickname);
         if (nicknamefound != null) {
             hasError = true;
             req.setAttribute("nicknamefound", "닉네임 값이 중복 입니다.");
@@ -51,8 +51,9 @@ public class JoinProceedServlet extends HttpServlet {
             boolean r = userDao.create(id, password, nickname, gender, birth);
             //
             if (r) {
-                resp.sendRedirect(req.getContextPath() + "/index");
+                resp.sendRedirect(req.getContextPath() + "/user/login");
             } else {
+                req.setAttribute("dbError","데이터베이스에 장애가 발생하였습니다.");
                 req.getRequestDispatcher("/WEB-INF/views/user/join-fail.jsp").forward(req, resp);
             }
         }

@@ -35,7 +35,7 @@
         <div>
             <label>비밀번호(*)</label>
             <div>
-                <input type="password" name="password"/>
+                <input type="password" name="password" value="${param.password}"/>
             </div>
             <c:if test="${passwordError != null}">
                 <div style="color:red; font-size: small">${passwordError}</div>
@@ -70,6 +70,9 @@
                 </select>
             </div>
         </div>
+        <c:if test="${dbError != null}">
+            <div style="color:red; font-size: small">${dbError}</div>
+        </c:if>
         <div>
             <button type="submit">가입하기</button>
         </div>

@@ -65,4 +65,32 @@ public class UserDAO {
         return one;
     }
 
+    public User findBynickname(String specficnickname) {
+        User one = null;
+
+        try {
+            Connection conn = ConnectionFactory.open();
+
+            PreparedStatement ps = conn.prepareStatement("select * from users where nickname=?");
+            ps.setString(1, specficnickname);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {  //rs.next 수행결과가 true 이면 아래 구문 수행
+                one = new User();
+                one.setId(rs.getString("id"));
+                one.setPassword(rs.getString("password"));
+                one.setNickname(rs.getString("nickname"));
+                one.setGender(rs.getString("gender"));
+                one.setBirth(rs.getInt("birth"));
+                one.setCreateAt(rs.getDate("created_at"));
+            }
+            conn.close();
+
+        } catch (Exception e) {
+            System.out.println("UserDAO.findByNickname" + e.toString());
+        }
+
+        return one;
+    }
 }
