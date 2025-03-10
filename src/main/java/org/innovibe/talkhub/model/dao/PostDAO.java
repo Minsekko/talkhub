@@ -91,4 +91,38 @@ public class PostDAO {
         return post;
     }
 
+    //조회수 증가(by Id)
+    public boolean increaseViewById(int postId) {
+        boolean result = false;
+        /* try with resources statement */
+
+        try(Connection conn = ConnectionFactory.open()) {
+            PreparedStatement ps = conn.prepareStatement("update posts set views = views + 1 where id = ?");
+            ps.setInt(1,postId);
+            int r = ps.executeUpdate();
+            if (r>0){
+                result = true;
+            }
+        } catch (Exception e) {
+            System.out.println();
+        }
+        return result;
+    }
+
+    //추천수 증가(by Id)
+    public boolean increaseLikesById(int postId) {
+        boolean result = false;
+        try(Connection conn = ConnectionFactory.open()) {
+            PreparedStatement ps = conn.prepareStatement("update posts set likes = likes + 1 where id = ?");
+            ps.setInt(1,postId);
+            int r = ps.executeUpdate();
+            if (r>0){
+                result = true;
+            }
+        } catch (Exception e) {
+            System.out.println();
+        }
+        return result;
+    }
+
 }
